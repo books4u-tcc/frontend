@@ -7,7 +7,8 @@ export default function Sidebar(){
                 <Flex flexDir="row" h="15%" w="100%" alignItems="center" justifyContent="center">
                     <img src={logo}></img>
                 </Flex>
-            <Flex h="75%" minH="100px">                
+            <Flex h="75%" minH="100px">
+                              
                 <List w="90%" fontFamily="Verdana, Geneva, sans-serif" fontSize="100%" spacing={3} mt="1rem" color="#616161">
                     <ListItem fontWeight="semibold" boxShadow="default" borderRadius="2xl" bg="#F0F0F0" borderWidth="8px" borderColor="#F0F0F0" noOfLines={1} color="#006D86" textAlign="center">Nova Conversa</ListItem>
                     <ListItem fontWeight="semibold" boxShadow="default" borderRadius="2xl" bg="#F0F0F0" borderWidth="8px" borderColor="#F0F0F0" noOfLines={1}>Recomendação de livro</ListItem>
