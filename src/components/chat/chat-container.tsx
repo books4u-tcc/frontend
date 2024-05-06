@@ -7,10 +7,10 @@ export interface ChatContainerProps {
 
 export function ChatContainer({ children }: ChatContainerProps) {
   return ( 
-    <Flex w="100%" h="100%" m="0 auto 0 auto" minW="600px" overflowY="scroll" borderRadius="1rem 1rem 0 0" bg="#F6F6F6">
-      <Flex w="100%" gap={3} direction="column" padding="1rem 5rem 1rem 5rem">
+    <Flex direction="column" w="100%" h="100%" m="0 auto 0 auto" minW="600px" borderRadius="lg" bg="linear-gradient( #F6F6F600 0%, #F6F6F6 15%)">
+      
         {children}
-      </Flex>
+      
     </Flex>
   )
 }
