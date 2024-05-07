@@ -1,21 +1,40 @@
 import { create } from "zustand";
 import { ChatboxProps } from "./chatbox";
-import { mockedMessages, usedMessages } from "./mock-messages";
+import { mockedMessages, mockedSuggestions, mockRecommendations, usedMessages } from "./mock-messages";
 import { wait } from "../../utils";
+import { RecommendationCardProps } from "./recommendation-card";
 
 interface MessageItem extends ChatboxProps {}
 
+interface RecommendationItem extends RecommendationCardProps {}
+
 export interface ChatConversationStore {
   messages: MessageItem[]
+  suggestions: string[]
+  recommendations: RecommendationItem[]
 }
 
 export const useChatStore = create<ChatConversationStore>((set) => ({
-  messages: []
+  messages: [],
+  suggestions: [],
+  recommendations: []
 }))
 
 const { setState, getState } = useChatStore
 
 export const chatStoreActions = {
+  setSuggestions(suggestions: string[]) {
+    setState({
+      suggestions
+    })
+  },
+
+  setRecommendations(recommendations: RecommendationItem[]) {
+    setState({
+      recommendations
+    })
+  },
+
   addMessage(msg: MessageItem) {
     setState(store => ({
       messages: [...store.messages, msg]
@@ -42,13 +61,21 @@ export const chatStoreActions = {
       state: 'loading',
       position: 'left'
     })
+    this.setSuggestions([])
     const nextResponseMessage = mockedMessages[usedMessages.value++]
 
     await wait(300)
 
     this.editLastMessage({
       state: 'normal',
-      children: nextResponseMessage ?? 'Não tenho mais o que dizer'
+      children: nextResponseMessage ?? 'Ótimo, aqui estão minhas sugestões:'
     })
+
+    if (!nextResponseMessage) {
+      this.setRecommendations(mockRecommendations)
+    }
+
+    const sugg = mockedSuggestions[usedMessages.value - 1]
+    this.setSuggestions(sugg ?? [])
   }
 }
