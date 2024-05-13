@@ -1,4 +1,5 @@
 import { Flex, List, ListItem } from "@chakra-ui/react";
+import logoBig from '../../assets/logo-big.svg'
 
 export default function Sidebar() {
   return (
@@ -17,13 +18,11 @@ export default function Sidebar() {
         alignItems="center"
         justifyContent="center"
       >
-        {'[ LOGO ]'}
-        {/* <img src={logo}></img> */}
+        <img src={logoBig}></img>
       </Flex>
       <Flex h="75%" minH="100px">
         <List
           w="90%"
-          fontFamily="Verdana, Geneva, sans-serif"
           fontSize="100%"
           spacing={3}
           mt="1rem"
