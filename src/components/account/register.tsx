@@ -1,5 +1,5 @@
 import { Flex, FormControl, FormLabel, Input, Text, Button, FormErrorMessage } from "@chakra-ui/react";
-import { FieldValue, FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 interface FormData {
     name: string;
