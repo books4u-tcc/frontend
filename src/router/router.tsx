@@ -9,6 +9,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '/account',
-    element: <AccountForm/>
+    element: <AccountForm type="login"/>
   }
 ])
