@@ -11,13 +11,11 @@ interface RecommendationItem extends RecommendationCardProps {}
 export interface ChatConversationStore {
   messages: MessageItem[]
   suggestions: string[]
-  recommendations: RecommendationItem[]
 }
 
 export const useChatStore = create<ChatConversationStore>((set) => ({
   messages: [],
   suggestions: [],
-  recommendations: []
 }))
 
 const { setState, getState } = useChatStore
@@ -26,12 +24,6 @@ export const chatStoreActions = {
   setSuggestions(suggestions: string[]) {
     setState({
       suggestions
-    })
-  },
-
-  setRecommendations(recommendations: RecommendationItem[]) {
-    setState({
-      recommendations
     })
   },
 
@@ -66,14 +58,13 @@ export const chatStoreActions = {
 
     await wait(300)
 
+    const isRecs = Array.isArray(nextResponseMessage)
+
     this.editLastMessage({
       state: 'normal',
-      children: nextResponseMessage ?? 'Ótimo, aqui estão minhas sugestões:'
+      children: (isRecs ? nextResponseMessage[0] : nextResponseMessage) || 'Não sei responder isso',
+      recommendations: isRecs ? nextResponseMessage[1] : undefined
     })
-
-    if (!nextResponseMessage) {
-      this.setRecommendations(mockRecommendations)
-    }
 
     const sugg = mockedSuggestions[usedMessages.value - 1]
     this.setSuggestions(sugg ?? [])

@@ -10,7 +10,6 @@ import { RecommendationCard } from "./recommendation-card";
 export function ChatConversation() {
   const messages = useChatStore((s) => s.messages);
   const suggestions = useChatStore((s) => s.suggestions);
-  const recommendations = useChatStore((s) => s.recommendations);
 
   const { focusPromptInput } = useChatContext();
 
@@ -36,14 +35,6 @@ export function ChatConversation() {
             </SuggestionCard>
           ))}
           <SuggestionCard onClick={focusPromptInput}>Outros</SuggestionCard>
-        </Flex>
-      )}
-
-      {recommendations.length > 0 && (
-        <Flex gap={5}>
-          {recommendations.map((r) => (
-            <RecommendationCard {...r} />
-          ))}
         </Flex>
       )}
     </Fragment>

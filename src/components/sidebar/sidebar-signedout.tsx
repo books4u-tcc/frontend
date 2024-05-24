@@ -2,15 +2,16 @@ import { Flex, Link } from "@chakra-ui/react";
 import { Fragment } from "react/jsx-runtime";
 import { SidebarButton } from "./sidebar-button";
 import { SidebarTip } from "./sidebar-tip";
+import { Link as RouterLink} from 'react-router-dom'
 
 export function SidebarSignedOut() {
   return (
     <Fragment>
       <Flex flex={1} flexDir="column" w="100%" gap={2}>
-        <SidebarButton highlighted >
+        <SidebarButton as={RouterLink} to="/account/auth" highlighted >
           Entrar
         </SidebarButton>
-        <SidebarButton>Criar conta</SidebarButton>
+        <SidebarButton as={RouterLink} to="/account/auth">Criar conta</SidebarButton>
 
         <SidebarTip />
       </Flex>

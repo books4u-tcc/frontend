@@ -10,8 +10,9 @@ export const useAuthStore = create<AuthStore>(set => ({
 
 const { setState, getState } = useAuthStore
 
-export const chatStoreActions = {
+export const authStoreActions = {
   login() {
+    console.log('aaaaaaaaaa')
     setState({ authenticated: true })
   },
 

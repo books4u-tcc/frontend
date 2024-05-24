@@ -8,6 +8,8 @@ import { useAuthStore } from "../../stores/auth";
 export default function Sidebar() {
   const authenticated = useAuthStore(s => s.authenticated)
 
+  console.log(authenticated)
+
   return (
     <Flex w="100%" h="100%" flexDir="column" justifySelf="start" px={3} py={5}>
       <Flex flexDir="column" h="100%" w="100%" alignItems="center" gap={4}>

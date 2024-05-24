@@ -38,6 +38,7 @@ export function ChatCard({ children, ...props }: ChatCardProps) {
         h="100%"
         zIndex={1}
         className="suggestion-background"
+        pointerEvents="none"
       />
 
       {children}

@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { SidebarButton } from "./sidebar-button";
 import { Flex, Icon, Link } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
+import { authStoreActions } from "../../stores/auth";
 
 export function SidebarSignedIn() {
   return (
@@ -16,7 +17,7 @@ export function SidebarSignedIn() {
 
       <Flex flexDir="column" w="100%" alignItems="start" color="#616161">
         <Link>Sobre</Link>
-        <Link>Log Out</Link> <SidebarSignedIn />
+        <Link onClick={authStoreActions.logout}>Log Out</Link>
       </Flex>
     </Fragment>
   );

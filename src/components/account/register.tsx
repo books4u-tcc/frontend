@@ -1,5 +1,7 @@
 import { Flex, FormControl, FormLabel, Input, Text, Button, FormErrorMessage } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { authStoreActions } from "../../stores/auth";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
     name: string;
@@ -11,8 +13,13 @@ interface FormData {
 export function Register() {
     const { register, handleSubmit, formState: { errors }, watch } = useForm<FormData>();
 
-    const onSubmit = (data: FormData) => {
+    const navigate = useNavigate()
+
+    const onSubmit = async (data: FormData) => {
         console.log(Object.values(data));
+
+        authStoreActions.login()
+        navigate('/')
     };
 
     return (
