@@ -1,4 +1,9 @@
 import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import '@fontsource/poppins/400.css'
+import '@fontsource/poppins/500.css'
+import '@fontsource/poppins/600.css'
+import '@fontsource/poppins/700.css'
+import '@fontsource/poppins/800.css'
 
 const config: ThemeConfig = {
   initialColorMode: 'light',
@@ -16,8 +21,14 @@ const colors = {
   brandGradientHover: "linear-gradient(-45deg, #d2eff4 0%, #eafafc 100%)"
 }
 
+const fonts = {
+  heading: `'Poppins', sans-serif`,
+  body: `'Poppins', sans-serif`,
+}
+
 export const appTheme = extendTheme({
   config,
   shadows,
-  colors
+  colors,
+  fonts,
 })

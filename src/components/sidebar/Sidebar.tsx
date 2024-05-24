@@ -1,5 +1,7 @@
 import { Flex, List, ListItem } from "@chakra-ui/react";
 import logoBig from '../../assets/logo-big.svg'
+import { SidebarButton } from "./sidebar-button";
+import { SidebarSignedIn } from "./sidebar-signedin";
 
 export default function Sidebar() {
   return (
@@ -28,52 +30,7 @@ export default function Sidebar() {
           mt="1rem"
           color="#616161"
         >
-          <ListItem
-            fontWeight="semibold"
-            boxShadow="default"
-            borderRadius="2xl"
-            bg="#F0F0F0"
-            borderWidth="8px"
-            borderColor="#F0F0F0"
-            noOfLines={1}
-            color="#006D86"
-            textAlign="center"
-          >
-            Nova Conversa
-          </ListItem>
-          <ListItem
-            fontWeight="semibold"
-            boxShadow="default"
-            borderRadius="2xl"
-            bg="#F0F0F0"
-            borderWidth="8px"
-            borderColor="#F0F0F0"
-            noOfLines={1}
-          >
-            Recomendação de livro
-          </ListItem>
-          <ListItem
-            fontWeight="semibold"
-            boxShadow="default"
-            borderRadius="2xl"
-            bg="#F0F0F0"
-            borderWidth="8px"
-            borderColor="#F0F0F0"
-            noOfLines={1}
-          >
-            Livros basileiros
-          </ListItem>
-          <ListItem
-            fontWeight="semibold"
-            boxShadow="default"
-            borderRadius="2xl"
-            bg="#F0F0F0"
-            borderWidth="8px"
-            borderColor="#F0F0F0"
-            noOfLines={1}
-          >
-            Livros americanos de romance
-          </ListItem>
+          <SidebarSignedIn />
         </List>
       </Flex>
       <Flex
