@@ -1,53 +1,19 @@
-import { Flex, List, ListItem } from "@chakra-ui/react";
-import logoBig from '../../assets/logo-big.svg'
+import { Flex, Link, List, ListItem } from "@chakra-ui/react";
+import logoBig from "../../assets/logo-big.svg";
 import { SidebarButton } from "./sidebar-button";
 import { SidebarSignedIn } from "./sidebar-signedin";
+import { SidebarSignedOut } from "./sidebar-signedout";
+import { useAuthStore } from "../../stores/auth";
 
 export default function Sidebar() {
+  const authenticated = useAuthStore(s => s.authenticated)
+
   return (
-    <Flex
-      w="20%"
-      h="100%"
-      minW="100px"
-      flexDir="column"
-      mr="1rem"
-      justifySelf="start"
-    >
-      <Flex
-        flexDir="row"
-        h="15%"
-        w="100%"
-        alignItems="center"
-        justifyContent="center"
-      >
+    <Flex w="100%" h="100%" flexDir="column" justifySelf="start" px={3} py={5}>
+      <Flex flexDir="column" h="100%" w="100%" alignItems="center" gap={4}>
         <img src={logoBig}></img>
-      </Flex>
-      <Flex h="75%" minH="100px">
-        <List
-          w="90%"
-          fontSize="100%"
-          spacing={3}
-          mt="1rem"
-          color="#616161"
-        >
-          <SidebarSignedIn />
-        </List>
-      </Flex>
-      <Flex
-        h="10%"
-        minH="100px"
-        alignItems="center"
-        justifyContent="start"
-        bg="white"
-      >
-        <List
-          fontFamily="Verdana, Geneva, sans-serif"
-          fontSize="110%"
-          color="#616161"
-        >
-          <ListItem>Sobre</ListItem>
-          <ListItem>Log Out</ListItem>
-        </List>
+
+        { authenticated ? <SidebarSignedIn /> : <SidebarSignedOut />}
       </Flex>
     </Flex>
   );
