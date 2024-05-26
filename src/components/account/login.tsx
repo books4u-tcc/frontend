@@ -47,7 +47,7 @@ export function Login(){
                     </FormErrorMessage>
                 </FormControl>
 
-                <Button type="submit" colorScheme="blue" mt={4}>Registrar</Button>
+                <Button type="submit" colorScheme="blue" mt={4}>Entrar</Button>
             </form>
         </Flex>
     );
