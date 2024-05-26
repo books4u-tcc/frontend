@@ -1,18 +1,36 @@
-import { Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, Text, Button } from "@chakra-ui/react";
 import Sidebar from "../components/sidebar/Sidebar";
 import { Register } from "../components/account/register";
+import React, { useState } from "react";
+import { Login } from "../components/account/login";
 
-export default function AccountForm() {
-  return (
-    <Grid h="100dvh" templateColumns={["200px 3fr", "200px 3fr", "340px 3fr"]}>
-      <GridItem>
-        <Sidebar />
-      </GridItem>
-      <GridItem>
-        <Flex w="100%" h="100%" direction="column">
-          <Register />
-        </Flex>
-      </GridItem>
-    </Grid>
-  );
+interface Props {
+  type: "register" | "login"
 }
+
+const AccountForm : React.FC<Props> = ({type = "login"}) => {
+    const [pageType, setPageType] = useState(type);
+    return(
+    <Flex h="100vh" p="1rem">
+      <Sidebar/>
+      <Flex w="100%" direction="column" justifyContent="center" alignItems="center">
+          {pageType === "register" ? 
+          <>
+            <Register/>
+            <>
+              <Text display="inline-block">Já possui uma conta?</Text>
+              <Button display="inline-block" background="none" border="none" color="blue" onClick={() => setPageType("login")}>Entrar</Button>
+          
+            </>
+          </> : 
+          <>
+            <Login/>
+            <Text>Ainda não possui uma conta?</Text><Button background="none" border="none" color="blue" onClick={() => setPageType("register")}>Criar conta</Button>
+          </>
+          }
+      </Flex>
+    </Flex>
+    );
+};
+
+export default AccountForm;

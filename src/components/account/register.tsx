@@ -23,12 +23,13 @@ export function Register() {
     };
 
     return (
-        <Flex flexDir="column" p={4} maxW="md" mx="auto">
+        <Flex flexDir="column" textAlign="center" p={4} maxW="md" mx="auto">
             <Text fontSize="2xl" mb={4}>Criar conta</Text>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl isInvalid={Boolean(errors.name)} mb={4}>
-                    <FormLabel>Nome</FormLabel>
-                    <Input 
+                    <Input
+                        variant="input"
+                        placeholder="Nome"
                         type="text" 
                         {...register("name", { 
                             required: "Nome é obrigatório",
@@ -45,8 +46,9 @@ export function Register() {
                 </FormControl>
 
                 <FormControl isInvalid={Boolean(errors.email)} mb={4}>
-                    <FormLabel>Email</FormLabel>
                     <Input 
+                        variant="input"
+                        placeholder="Email"
                         type="email" 
                         {...register("email", { 
                             required: "Email é obrigatório", 
@@ -62,8 +64,9 @@ export function Register() {
                 </FormControl>
 
                 <FormControl isInvalid={Boolean(errors.password)} mb={4}>
-                    <FormLabel>Senha</FormLabel>
                     <Input 
+                        variant="input"
+                        placeholder="Senha"
                         type="password" 
                         {...register("password", { 
                             required: "Senha é obrigatória", 
@@ -76,8 +79,9 @@ export function Register() {
                 </FormControl>
 
                 <FormControl isInvalid={Boolean(errors.confirmPassword)} mb={4}>
-                    <FormLabel>Confirmar Senha</FormLabel>
                     <Input 
+                        variant="input"
+                        placeholder="Confirmar senha"
                         type="password" 
                         {...register("confirmPassword", { 
                             required: "Confirmação de senha é obrigatória", 
