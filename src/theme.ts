@@ -16,8 +16,35 @@ const colors = {
   brandGradientHover: "linear-gradient(-45deg, #d2eff4 0%, #eafafc 100%)"
 }
 
+const components = {
+  Input: {
+    baseStyle: {
+      
+    },
+    sizes: {},
+    variants: {
+      input:{
+        field: {
+          bgColor: "#DDDDDD",
+          borderColor: "brand",
+          borderRadius: "xl",
+          _hover: {
+            borderColor: "brand",
+          },
+          _focus: {
+            borderColor: "brand",
+            boxShadow: "0 0 0 1px #006D86",
+          },
+        },
+      }
+    },
+    defaultProps: {},
+  },
+}
+
 export const appTheme = extendTheme({
   config,
   shadows,
-  colors
+  colors,
+  components
 })
