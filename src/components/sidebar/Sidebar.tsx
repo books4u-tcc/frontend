@@ -1,4 +1,4 @@
-import { Flex, List, ListItem } from "@chakra-ui/react";
+import { Flex, Link, List, ListItem } from "@chakra-ui/react";
 
 export default function Sidebar() {
   return (
@@ -17,7 +17,7 @@ export default function Sidebar() {
         alignItems="center"
         justifyContent="center"
       >
-        {'[ LOGO ]'}
+        <a href="/">{'[ LOGO ]'}</a>
         {/* <img src={logo}></img> */}
       </Flex>
       <Flex h="75%" minH="100px">
@@ -89,7 +89,17 @@ export default function Sidebar() {
           fontSize="110%"
           color="#616161"
         >
-          <ListItem>Sobre</ListItem>
+          <ListItem>
+            <a href="/about">
+              Sobre
+            </a>
+            </ListItem>
+
+            <ListItem>
+            <a href="/myaccount">
+              Minha conta
+            </a>
+            </ListItem>
           <ListItem>Log Out</ListItem>
         </List>
       </Flex>
