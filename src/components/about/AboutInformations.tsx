@@ -15,7 +15,7 @@ export default function AboutInformations() {
                 <h1>Projeto Github</h1>
                 </Flex>
                 <Flex fontSize="100%" paddingTop="1rem">
-                <h1>github.com/bibliobot-tcc/</h1>
+                <h1>github.com/books4u-tcc/</h1>
                 </Flex>
             </Flex>
         </Flex>

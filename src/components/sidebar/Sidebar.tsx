@@ -17,7 +17,7 @@ export default function Sidebar() {
         w="100%"
         alignItems="center"
         justifyContent="center"
-        
+        >
         <a href="/">
         <img src={logoBig}></img>
         </a>
