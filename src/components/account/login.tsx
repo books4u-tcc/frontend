@@ -16,7 +16,7 @@ export function Login(){
 
     return(
         <Flex flexDir="column" textAlign="center" p={4} maxW="md" mx="auto">
-            <Text fontSize="2xl" mb={4}>Criar conta</Text>
+            <Text fontSize="2xl" mb={4}>Entrar</Text>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl mb={4}>
                     <Input
