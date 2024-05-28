@@ -18,6 +18,7 @@ export function SidebarSignedIn() {
 
       <Flex flexDir="column" w="100%" alignItems="start" color="#616161">
         <Link as={RouterLink} to="/about" >Sobre</Link>
+        <Link as={RouterLink} to="/account" >Minha conta</Link>
         <Link onClick={authStoreActions.logout}>Log Out</Link>
       </Flex>
     </Fragment>
