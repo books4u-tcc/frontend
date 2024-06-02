@@ -16,8 +16,6 @@ export function Register() {
     const navigate = useNavigate()
 
     const onSubmit = async (data: FormData) => {
-        console.log(Object.values(data));
-
         authStoreActions.login()
         navigate('/')
     };
