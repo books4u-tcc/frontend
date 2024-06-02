@@ -13,13 +13,14 @@ import {
   Collapse,
   Box,
   Icon,
+  IconButton,
 } from "@chakra-ui/react";
 import user from "../../assets/user.png";
 import edit from "../../assets/editIcon.png";
 import AlertDialogChangePassword from "./ChangePassword";
 import AlertDialogDeleteAccount from "./DeleteAccount";
 import EditAccount from "./EditAccount";
-import { FaUser } from "react-icons/fa";
+import { FaEdit, FaUser } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 
 export default function User() {
@@ -27,6 +28,9 @@ export default function User() {
 
   return (
     <Flex
+    maxW={500}
+    gap={4}
+    mx="auto"
       w="100%"
       h="100%"
       justifyContent="center"
@@ -34,59 +38,53 @@ export default function User() {
       flexDirection="column" // Alteração para flex direção de coluna para dispositivos menores
     >
       <Flex
-        w="auto"
-        // w= // Tamanhos diferentes para diferentes tamanhos de tela
+        
+        w="100%"
         h="auto"
         borderRadius="10px"
         bg="#ECECEC"
         boxShadow="default"
-        mb="20px" // Margem inferior para dispositivos móveis
         flexDirection="column"
+        p={4}
+        border="1px solid #D1D1D1"
       >
-        <Flex>
+        <Flex alignItems="center" gap={3}>
           <Flex
             justifyContent="center"
             alignItems="center"
-            background="gray.400"
-            borderRadius={10}
+            background="blackAlpha.300"
+            borderRadius="100%"
+            p={5}
           >
-            <Icon w={100} h={100} as={FiUser} />
+            <Icon w={16} h={16} as={FiUser} />
           </Flex>
 
-          <Flex w="100%" justifyContent="left" alignItems="center">
-            <List fontWeight="semibold" fontSize="125%" flexDir="column">
-              <ListItem color="black">Biblio Bob</ListItem>
-              <ListItem color="#8C8C8C">bibliobob@email.com</ListItem>
-            </List>
+          <Flex direction="column" w="100%" justifyContent="left" fontSize="medium">
+              <Text fontWeight="bold" color="black">Biblio Bob</Text>
+              <Text fontWeight="medium" color="#8C8C8C">bibliobob@email.com</Text>
           </Flex>
 
           <Tooltip hasArrow label="Editar conta" bg="#373737" color="white">
-            <Flex
-              justifyContent="center"
-              alignItems="center"
-              m="1%"
-              width="20%"
-            >
-              <Button onClick={onToggle} bg="#ECECEC">
-                <img src={edit} alt="editIcon" style={{ maxWidth: "50%" }} />
-              </Button>
-            </Flex>
+            <IconButton
+              variant="ghost"
+              size="lg"
+              onClick={onToggle}
+              aria-label="Editar conta"
+              icon={<Icon as={FaEdit} />}
+            />
           </Tooltip>
         </Flex>
 
-        <Collapse in={isOpen}>
-          <Flex>
+          <Collapse in={isOpen}>
             <EditAccount />
-          </Flex>
-        </Collapse>
+          </Collapse>
       </Flex>
 
       <Flex
-        w="60%"
-        h="10%"
+      w="100%"
         alignItems="center"
-        justifyContent="right"
-        flexDir="row"
+        justifyContent="end"
+        gap={4}
       >
         <AlertDialogChangePassword />
         <AlertDialogDeleteAccount />

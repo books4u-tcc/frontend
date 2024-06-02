@@ -11,7 +11,7 @@ const config: ThemeConfig = {
 }
 
 const shadows = {
-  default: '0px 4px 10px 0px rgba(0, 0, 0, 0.2)',
+  default: '0px 4px 13px 0px rgba(0, 0, 0, 0.12)',
   defaultHovered: '0px 5px 13px 0px rgba(0, 0, 0, 0.25)'
 }
 
