@@ -1,17 +1,24 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { ChatCard } from "./chat-card";
+import { chatStoreActions } from "./chat-store";
 
 export interface RecommendationCardProps {
   title: string;
   author: string;
   imageSrc?: string;
+  link?: string;
 }
 
 export function RecommendationCard(props: RecommendationCardProps) {
+  function showDetails() {
+    chatStoreActions.sendMessage(
+      `Me conte mais sobre o livro ${props.title} de ${props.author}`
+    );
+  }
   return (
     <ChatCard _hover={{}} as="div" maxW={180}>
       <Flex flexDir="column" gap={2} alignItems="center">
-        <Image src="https://via.placeholder.com/140x200" borderRadius="sm" />
+        <Image src={props.imageSrc} borderRadius="md" h={240} zIndex={1000} />
 
         <Text
           zIndex={10}
@@ -25,6 +32,32 @@ export function RecommendationCard(props: RecommendationCardProps) {
         <Text zIndex={10} color="brand" fontSize="large" align="center">
           {props.author}
         </Text>
+        <Button
+          w="100%"
+          size="sm"
+          bg="blackAlpha.100"
+          _hover={{
+            bg: "blackAlpha.300",
+          }}
+          variant="ghost"
+          zIndex={1000}
+          onClick={showDetails}
+        >
+          Ver detalhes
+        </Button>
+        {props.link && (
+          <Button
+            w="100%"
+            size="sm"
+            colorScheme="teal"
+            as="a"
+            href={props.link}
+            target="_blank"
+            zIndex={1000}
+          >
+            Comprar
+          </Button>
+        )}
       </Flex>
     </ChatCard>
   );

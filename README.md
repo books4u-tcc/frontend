@@ -1,4 +1,4 @@
-# BiblioBot Frontend
+# Books4U Frontend
 
 Projeto frontend para o tcc. **Em construção**
 

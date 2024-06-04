@@ -1,0 +1,6 @@
+.arrow {
+  content: "";
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--chakra-colors-teal-500) transparent;
+}

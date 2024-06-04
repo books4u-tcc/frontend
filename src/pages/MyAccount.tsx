@@ -1,14 +1,13 @@
-import { Flex } from "@chakra-ui/react";
-import Sidebar from "../components/sidebar/Sidebar";
 import User from "../components/user/User";
+import { PageScaffold } from "./PageScaffold";
+import { ContentBox } from "../components/content-box";
 
 export function MyAccount() {
-  return <div>
-    <Flex h="100vh" p="1rem">
-      <Sidebar/>
-      <Flex w="100%" direction="column">
+  return (
+    <PageScaffold>
+      <ContentBox>
         <User />
-      </Flex>
-    </Flex>
-  </div>
+      </ContentBox>
+    </PageScaffold>
+  );
 }
