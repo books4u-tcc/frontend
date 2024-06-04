@@ -38,7 +38,7 @@ export default function EditAccount() {
         <Input
           type="text"
           width="100%"
-          {...register("Name", { value: "Biblio Bob"})}
+          {...register("Name", { value: "Bookinho"})}
           placeholder="Nome"
           bg="blackAlpha.100"
         />
@@ -53,7 +53,7 @@ export default function EditAccount() {
         <FormLabel>Email</FormLabel>
         <Input
           width="100%"
-          {...register("Email", { value: "bibliobob@email.com"})}
+          {...register("Email", { value: "bookinho@email.com"})}
           placeholder="Email"
           bg="blackAlpha.100"
         />

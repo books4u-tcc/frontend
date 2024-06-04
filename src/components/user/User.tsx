@@ -60,8 +60,8 @@ export default function User() {
           </Flex>
 
           <Flex direction="column" w="100%" justifyContent="left" fontSize="medium">
-              <Text fontWeight="bold" color="black">Biblio Bob</Text>
-              <Text fontWeight="medium" color="#8C8C8C">bibliobob@email.com</Text>
+              <Text fontWeight="bold" color="black">Bookinho</Text>
+              <Text fontWeight="medium" color="#8C8C8C">bookinho@email.com</Text>
           </Flex>
 
           <Tooltip hasArrow label="Editar conta" bg="#373737" color="white">

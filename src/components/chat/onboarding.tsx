@@ -22,7 +22,7 @@ export function Onboarding() {
     >
       <img src={bookSearchIcon} />
       <Text align="center" color="brand" fontSize="x-large">
-        <p>Bem vindo ao BiblioBOT</p>
+        <p>Bem vindo ao Books4U</p>
         <p>Como posso te ajudar hoje?</p>
       </Text>
 

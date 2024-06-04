@@ -4,7 +4,7 @@ export default function AboutInformations() {
   return (
     <Flex w="100%" h="100%" marginLeft="18rem" flexDir="column">
       <Flex fontSize="250%">
-        <h1>Sobre o BiblioBot</h1>
+        <h1>Sobre o Books4U</h1>
       </Flex>
       <Flex fontSize="100%" paddingTop="1rem">
         <h1>
