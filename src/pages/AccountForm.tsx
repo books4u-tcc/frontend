@@ -4,13 +4,10 @@ import React, { useState } from "react";
 import { Login } from "../components/account/login";
 import { PageScaffold } from "./PageScaffold";
 import { ContentBox } from "../components/content-box";
+import { useLoginStore } from "../components/account/loginStore";
 
-interface Props {
-  type: "register" | "login";
-}
-
-const AccountForm: React.FC<Props> = ({ type = "login" }) => {
-  const [pageType, setPageType] = useState(type);
+const AccountForm: React.FC = () => {
+  const { view, setView } = useLoginStore()
   return (
     <PageScaffold>
       <ContentBox>
@@ -20,7 +17,7 @@ const AccountForm: React.FC<Props> = ({ type = "login" }) => {
           justifyContent="center"
           alignItems="center"
         >
-          {pageType === "register" ? (
+          {view === "register" ? (
             <>
               <Register />
               <>
@@ -30,7 +27,7 @@ const AccountForm: React.FC<Props> = ({ type = "login" }) => {
                   background="none"
                   border="none"
                   color="blue"
-                  onClick={() => setPageType("login")}
+                  onClick={() => setView("login")}
                 >
                   Entrar
                 </Button>
@@ -44,7 +41,7 @@ const AccountForm: React.FC<Props> = ({ type = "login" }) => {
                 background="none"
                 border="none"
                 color="blue"
-                onClick={() => setPageType("register")}
+                onClick={() => setView("register")}
               >
                 Criar conta
               </Button>

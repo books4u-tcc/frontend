@@ -1,19 +1,20 @@
 import { create } from "zustand";
 
 interface AuthStore {
-  authenticated: boolean
+  authenticated: boolean,
+  token: string | null
 }
 
 export const useAuthStore = create<AuthStore>(set => ({
-  authenticated: false
+  authenticated: false,
+  token: null
 }))
 
 const { setState, getState } = useAuthStore
 
 export const authStoreActions = {
-  login() {
-    console.log('aaaaaaaaaa')
-    setState({ authenticated: true })
+  login(token: string) {
+    setState({ authenticated: true, token })
   },
 
   logout() {

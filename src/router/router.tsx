@@ -24,6 +24,6 @@ export const router = createBrowserRouter([
         
   {
     path: '/account/auth',
-    element: <AccountForm type="login"/>
+    element: <AccountForm />
   }
 ])

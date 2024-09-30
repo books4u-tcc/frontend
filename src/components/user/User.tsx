@@ -1,36 +1,42 @@
 import {
-  Button,
   Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  List,
-  ListItem,
   useDisclosure,
   Text,
   Tooltip,
   Collapse,
-  Box,
   Icon,
   IconButton,
+  useToast,
+  Skeleton,
 } from "@chakra-ui/react";
-import user from "../../assets/user.png";
-import edit from "../../assets/editIcon.png";
 import AlertDialogChangePassword from "./ChangePassword";
 import AlertDialogDeleteAccount from "./DeleteAccount";
 import EditAccount from "./EditAccount";
-import { FaEdit, FaUser } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
+import { useEffect } from "react";
+import { userStoreActions, useUserStore } from "./userStore";
 
 export default function User() {
   const { isOpen, onToggle } = useDisclosure();
+  const { account, isLoading } = useUserStore();
+  const toast = useToast();
+
+  useEffect(() => {
+    userStoreActions.load().catch((err) =>
+      toast({
+        title: "Ocorreu um erro!",
+        description: String(err),
+        status: "error",
+      })
+    );
+  }, []);
 
   return (
     <Flex
-    maxW={500}
-    gap={4}
-    mx="auto"
+      maxW={500}
+      gap={4}
+      mx="auto"
       w="100%"
       h="100%"
       justifyContent="center"
@@ -38,7 +44,6 @@ export default function User() {
       flexDirection="column" // Alteração para flex direção de coluna para dispositivos menores
     >
       <Flex
-        
         w="100%"
         h="auto"
         borderRadius="10px"
@@ -59,9 +64,23 @@ export default function User() {
             <Icon w={16} h={16} as={FiUser} />
           </Flex>
 
-          <Flex direction="column" w="100%" justifyContent="left" fontSize="medium">
-              <Text fontWeight="bold" color="black">Bookinho</Text>
-              <Text fontWeight="medium" color="#8C8C8C">bookinho@email.com</Text>
+          <Flex
+            direction="column"
+            w="100%"
+            justifyContent="left"
+            fontSize="medium"
+            gap={1}
+          >
+            <Skeleton isLoaded={!isLoading}>
+              <Text fontWeight="bold" color="black">
+                {account?.displayName ?? "loading"}
+              </Text>
+            </Skeleton>
+            <Skeleton isLoaded={!isLoading}>
+              <Text fontWeight="medium" color="#8C8C8C">
+                {account?.email ?? "loading"}
+              </Text>
+            </Skeleton>
           </Flex>
 
           <Tooltip hasArrow label="Editar conta" bg="#373737" color="white">
@@ -71,21 +90,17 @@ export default function User() {
               onClick={onToggle}
               aria-label="Editar conta"
               icon={<Icon as={FaEdit} />}
+              isDisabled={isLoading}
             />
           </Tooltip>
         </Flex>
 
-          <Collapse in={isOpen}>
-            <EditAccount />
-          </Collapse>
+        <Collapse in={isOpen}>
+          <EditAccount />
+        </Collapse>
       </Flex>
 
-      <Flex
-      w="100%"
-        alignItems="center"
-        justifyContent="end"
-        gap={4}
-      >
+      <Flex w="100%" alignItems="center" justifyContent="end" gap={4}>
         <AlertDialogChangePassword />
         <AlertDialogDeleteAccount />
       </Flex>
