@@ -5,7 +5,6 @@ import { Onboarding } from "./onboarding";
 import { Flex } from "@chakra-ui/react";
 import { SuggestionCard } from "./suggestion-card";
 import { useChatContext } from "./chat-context";
-import { RecommendationCard } from "./recommendation-card";
 
 export function ChatConversation() {
   const messages = useChatStore((s) => s.messages);

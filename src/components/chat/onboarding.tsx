@@ -26,7 +26,7 @@ export function Onboarding() {
         <p>Como posso te ajudar hoje?</p>
       </Text>
 
-      <Flex gap={5}>
+      <Flex w="100%" flexDir={["column", "column", "row"]} gap={5}>
         <SuggestionCard
           onClick={() => startSuggestion("Me recomende livros clássicos")}
         >

@@ -1,4 +1,4 @@
-import { Flex, Text, Button } from "@chakra-ui/react";
+import { Flex, Text, Button, Box } from "@chakra-ui/react";
 import { Register } from "../components/account/register";
 import React, { useState } from "react";
 import { Login } from "../components/account/login";
@@ -13,7 +13,7 @@ const AccountForm: React.FC<Props> = ({ type = "login" }) => {
   const [pageType, setPageType] = useState(type);
   return (
     <PageScaffold>
-      <ContentBox>
+      <Flex h="100%" alignItems="center">
         <Flex
           w="100%"
           direction="column"
@@ -51,7 +51,7 @@ const AccountForm: React.FC<Props> = ({ type = "login" }) => {
             </>
           )}
         </Flex>
-      </ContentBox>
+      </Flex>
     </PageScaffold>
   );
 };
