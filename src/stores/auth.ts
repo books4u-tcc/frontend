@@ -26,13 +26,16 @@ export const authStoreActions = {
 
   async boot() {
     const token = localStorage.getItem('auth-token')
+    if (!token) return
+
     setState({ token })
     try {
       await apiClient.getProfile()
       setState({ authenticated: true })
     } catch (error) {
       console.error(error)
-      setState({ authenticated: true, token: null })
+      localStorage.removeItem('auth-token')
+      setState({ authenticated: false, token: null })
     }
   }
 }

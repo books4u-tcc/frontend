@@ -21,3 +21,19 @@ export interface SendMessageResponse {
     ];
   };
 }
+
+export interface ConversationResponseItem {
+  id: string;
+  title: string;
+}
+
+export interface ListMessagesResponseMessage {
+  role: string;
+  message: string;
+  suggestions: unknown[];
+  canGenerateRecommendations: boolean;
+}
+
+export interface ListMessagesResponse {
+  messages: ListMessagesResponseMessage[]
+}

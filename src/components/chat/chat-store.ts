@@ -15,12 +15,14 @@ interface MessageItem extends ChatboxProps {}
 interface RecommendationItem extends RecommendationCardProps {}
 
 export interface ChatConversationStore {
+  isLoading: boolean,
   conversationId: string | null;
   messages: MessageItem[];
   suggestions: string[];
 }
 
 export const useChatStore = create<ChatConversationStore>((set) => ({
+  isLoading: false,
   conversationId: null,
   messages: [],
   suggestions: [],
@@ -29,9 +31,20 @@ export const useChatStore = create<ChatConversationStore>((set) => ({
 const { setState, getState } = useChatStore;
 
 export const chatStoreActions = {
+  setLoading(isLoading: boolean) {
+    setState({ isLoading })
+  },
+
   setSuggestions(suggestions: string[]) {
     setState({
       suggestions,
+    });
+  },
+
+  setMessages(messages: MessageItem[], conversationId: string) {
+    setState({
+      messages,
+      conversationId
     });
   },
 
@@ -95,10 +108,20 @@ export const chatStoreActions = {
 
       this.editLastMessage(responseMessage);
     } catch (error) {
+      console.error(error)
       this.editLastMessage({
         state: "error",
         children: "Ocorreu um erro! " + error,
       });
     }
+  },
+
+  clear() {
+    setState({
+      isLoading: false,
+      conversationId: null,
+      messages: [],
+      suggestions: []
+    })
   },
 };

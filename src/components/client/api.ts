@@ -1,7 +1,7 @@
 import axios from "axios"
 import { Account, LoginPayload, LoginResponse, RegisterUserPayload } from "./types/auth"
 import { useAuthStore } from "../../stores/auth"
-import { CreateConversationResponse, SendMessageResponse } from "./types/conversation"
+import { ConversationResponseItem, CreateConversationResponse, ListMessagesResponse, SendMessageResponse } from "./types/conversation"
 
 const apiBaseUrl = import.meta.env.VITE_BACKEND_URL
 
@@ -48,5 +48,13 @@ export const apiClient = {
     return client.post<SendMessageResponse>(`/api/conversations/${conversationId}/messages`, {
       message
     })
+  },
+
+  getConversations() {
+    return client.get<ConversationResponseItem[]>('/api/conversations')
+  },
+
+  getConversationMessages(conversationId: string) {
+    return client.get<ListMessagesResponse>(`/api/conversations/${conversationId}/messages`)
   }
 }
