@@ -18,5 +18,12 @@ const { setState, getState } = useSidebarStore;
 export const sidebarStoreActions = {
   setConversations(conversations: ConversationItem[]) {
     setState({ conversations })
+  },
+
+  addConversation(conversation: ConversationItem) {
+    setState({ conversations: [
+      conversation,
+      ...getState().conversations
+    ] })
   }
 }

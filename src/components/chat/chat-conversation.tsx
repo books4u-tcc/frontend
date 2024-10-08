@@ -8,45 +8,56 @@ import { useChatContext } from "./chat-context";
 import { RecommendationCard } from "./recommendation-card";
 import { useParams } from "react-router-dom";
 import { apiClient } from "../client/api";
+import { useChatHook } from "./chat-hook";
+import { useLoadMessages } from "./load-message-hook";
 
 export function ChatConversation() {
-  const { messages, isLoading, suggestions } = useChatStore();
+  const { messages, isLoading, suggestions, conversationId: storeConversationId } = useChatStore();
+  const { sendMessage } = useChatHook()
   const { conversationId } = useParams();
   const [lastConversationId, setLastConversationId] = useState<string | undefined>(undefined)
 
   const { focusPromptInput } = useChatContext();
 
-  function startSuggestion(message: string) {
-    chatStoreActions.sendMessage(message);
-  }
+  // useEffect(() => {
+  //   let active = true;
+  //   if (conversationId !== lastConversationId && conversationId !== storeConversationId) {
+  //     setLastConversationId(conversationId)
+  //     chatStoreActions.clear();
+  //     chatStoreActions.setLoading(true);
 
-  useEffect(() => {
-    if (conversationId !== lastConversationId) {
-      setLastConversationId(conversationId)
-      chatStoreActions.clear();
-      chatStoreActions.setLoading(true);
+  //     if (conversationId) {
+  //       apiClient
+  //         .getConversationMessages(conversationId)
+  //         .then(({ data }) => {
+  //           if (active) {
+  //             chatStoreActions.setMessages(data.messages.map(msg => ({
+  //               state: 'normal',
+  //               children: msg.message,
+  //               position: 'right'
+  //             })), conversationId)
+  //           }
+  //         })
+  //         .catch((error) => {
+  //           console.error(error);
+  //         })
+  //         .finally(() => {
+  //           if (active) {
+  //             chatStoreActions.setLoading(false)
+  //           }
+  //         });
+  //     } else {
+  //       chatStoreActions.setLoading(false);
+  //     }
 
-      if (conversationId) {
-        apiClient
-          .getConversationMessages(conversationId)
-          .then(({ data }) => {
-            chatStoreActions.setMessages(data.messages.map(msg => ({
-              state: 'normal',
-              children: msg.message,
-              position: 'right'
-            })), conversationId)
-          })
-          .catch((error) => {
-            console.error(error);
-          })
-          .finally(() => chatStoreActions.setLoading(false));
-      }
+  //     return () => {
+  //       console.log('deact')
+  //       active = false
+  //     }
+  //   }
+  // }, [conversationId, isLoading, lastConversationId, storeConversationId]);
 
-      apiClient;
-    }
-  }, [conversationId, isLoading, lastConversationId]);
-
-  console.log(conversationId, isLoading)
+  useLoadMessages();
 
   if (isLoading) {
     return <Center h="100%">
@@ -67,7 +78,7 @@ export function ChatConversation() {
       {suggestions.length > 0 && (
         <Flex gap={5}>
           {suggestions.map((s) => (
-            <SuggestionCard onClick={() => startSuggestion(s)}>
+            <SuggestionCard onClick={() => sendMessage(s)}>
               {s}
             </SuggestionCard>
           ))}

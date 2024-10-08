@@ -6,10 +6,12 @@ import { About } from "../pages/About";
 import AccountForm from "../pages/AccountForm";
 import { ConversationPage } from "../pages/Conversation";
 
+const conversationPage = <ConversationPage />
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: conversationPage,
   },
 
   {
@@ -28,6 +30,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "/conversations/:conversationId",
-    element: <ConversationPage />,
+    element: conversationPage,
   },
 ]);
