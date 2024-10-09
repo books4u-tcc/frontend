@@ -16,6 +16,8 @@ export function ChatCard({ children, ...props }: ChatCardProps) {
       py={6}
       overflow="hidden"
       position="relative"
+      alignItems="center"
+      justifyContent="center"
       transitionProperty="all"
       transitionDuration="normal"
       _hover={{

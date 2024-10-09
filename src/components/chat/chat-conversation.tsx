@@ -5,7 +5,6 @@ import { Onboarding } from "./onboarding";
 import { Flex } from "@chakra-ui/react";
 import { SuggestionCard } from "./suggestion-card";
 import { useChatContext } from "./chat-context";
-import { RecommendationCard } from "./recommendation-card";
 
 export function ChatConversation() {
   const messages = useChatStore((s) => s.messages);
@@ -28,7 +27,7 @@ export function ChatConversation() {
       ))}
 
       {suggestions.length > 0 && (
-        <Flex gap={5}>
+        <Flex gap={5} justifyContent="center">
           {suggestions.map((s) => (
             <SuggestionCard onClick={() => startSuggestion(s)}>
               {s}

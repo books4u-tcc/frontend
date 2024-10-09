@@ -6,8 +6,8 @@ import { ContentBox } from "../content-box";
 
 export function ChatContainer() {
   return (
-    <ContentBox>
-      <Flex flex={1} flexDirection="column" height="100%">
+    <Box h="100%">
+      <Flex flex={1} w="100%" flexDirection="column" height="100%">
         <Flex overflowY="auto" flex={1}>
           <Container
             maxWidth="container.xl"
@@ -26,6 +26,6 @@ export function ChatContainer() {
 
         <Promptbar />
       </Flex>
-    </ContentBox>
+    </Box>
   );
 }
