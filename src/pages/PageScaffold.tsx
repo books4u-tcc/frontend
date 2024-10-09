@@ -8,7 +8,10 @@ interface PageScaffoldProps {
 
 export function PageScaffold({ children }: PageScaffoldProps) {
   return (
-    <Grid h="100dvh" minW="200px" templateColumns={["1fr", "1fr", "1fr 1fr", "1fr 2fr", "340px 3fr"]}>
+    <Grid
+      minW="200px"
+      templateColumns={["1fr", "1fr", "1fr 3fr", "1fr 3fr", "340px 3fr"]}
+    >
       <GridItem>
         <Sidebar />
       </GridItem>

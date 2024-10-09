@@ -5,7 +5,7 @@ import { chatStoreActions } from "./chat-store";
 import { useChatContext } from "./chat-context";
 
 export function Onboarding() {
-  const { focusPromptInput } = useChatContext()
+  const { focusPromptInput } = useChatContext();
 
   function startSuggestion(message: string) {
     chatStoreActions.sendMessage(message);
@@ -26,7 +26,12 @@ export function Onboarding() {
         <p>Como posso te ajudar hoje?</p>
       </Text>
 
-      <Flex w="100%" flexDir={["column", "column", "row"]} gap={5}>
+      <Flex
+        w="100%"
+        justifyContent="center"
+        flexDir={["column", "column", "row"]}
+        gap={5}
+      >
         <SuggestionCard
           onClick={() => startSuggestion("Me recomende livros clássicos")}
         >

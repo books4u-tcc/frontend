@@ -27,7 +27,7 @@ export function ChatConversation() {
       ))}
 
       {suggestions.length > 0 && (
-        <Flex gap={5}>
+        <Flex gap={5} justifyContent="center">
           {suggestions.map((s) => (
             <SuggestionCard onClick={() => startSuggestion(s)}>
               {s}
