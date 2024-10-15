@@ -10,9 +10,11 @@ import { FiSend } from "react-icons/fi";
 import { useChatContext } from "./chat-context";
 import { FormEvent } from "react";
 import { chatStoreActions } from "./chat-store";
+import { useChatHook } from "./chat-hook";
 
 export default function Promptbar() {
   const { promptRef } = useChatContext();
+  const { sendMessage } = useChatHook()
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -20,7 +22,7 @@ export default function Promptbar() {
 
     if (!message?.trim()) return
 
-    chatStoreActions.sendMessage(message);
+    sendMessage(message);
     if (promptRef?.current) {
       promptRef.current.value = ''
     }

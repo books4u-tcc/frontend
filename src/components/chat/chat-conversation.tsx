@@ -19,44 +19,6 @@ export function ChatConversation() {
 
   const { focusPromptInput } = useChatContext();
 
-  // useEffect(() => {
-  //   let active = true;
-  //   if (conversationId !== lastConversationId && conversationId !== storeConversationId) {
-  //     setLastConversationId(conversationId)
-  //     chatStoreActions.clear();
-  //     chatStoreActions.setLoading(true);
-
-  //     if (conversationId) {
-  //       apiClient
-  //         .getConversationMessages(conversationId)
-  //         .then(({ data }) => {
-  //           if (active) {
-  //             chatStoreActions.setMessages(data.messages.map(msg => ({
-  //               state: 'normal',
-  //               children: msg.message,
-  //               position: 'right'
-  //             })), conversationId)
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           console.error(error);
-  //         })
-  //         .finally(() => {
-  //           if (active) {
-  //             chatStoreActions.setLoading(false)
-  //           }
-  //         });
-  //     } else {
-  //       chatStoreActions.setLoading(false);
-  //     }
-
-  //     return () => {
-  //       console.log('deact')
-  //       active = false
-  //     }
-  //   }
-  // }, [conversationId, isLoading, lastConversationId, storeConversationId]);
-
   useLoadMessages();
 
   if (isLoading) {

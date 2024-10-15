@@ -9,18 +9,17 @@ export function useChatHook() {
   async function sendMessage(msg: string) {
     async function createConversation(msg: string): Promise<MessageItem> {
       const { data: response } = await apiClient.createConversation();
-      chatStoreActions.setConversationId(response.conversationId)
+      const conversation = response.conversation[0]
+
+      chatStoreActions.setConversationId(conversation.id)
       sidebarStoreActions.addConversation({
-        id: response.conversationId,
-        title: 'TODO'
+        id: conversation.id,
+        title: conversation.title
       })
   
-      navigate(`conversations/${response.conversationId}`)
+      navigate(`conversations/${conversation.id}`)
   
-      return {
-        state: "normal",
-        children: response.messages[0].content,
-      };
+      return sendConversationMessage(conversation.id, msg)
     }
   
     async function sendConversationMessage(
@@ -28,11 +27,20 @@ export function useChatHook() {
       msg: string
     ): Promise<MessageItem> {
       const { data: response } = await apiClient.sendMessage(conversationId, msg);
+
+      chatStoreActions.setSuggestions(response.options || []);
   
       return {
-        state: "normal",
-        children: response.userMessage.content[0].text.value,
-      };
+        position: 'left',
+        children: response.message,
+        state: 'normal',
+        recommendations: response.recommendations?.map(rec => ({
+          title: rec.name,
+          author: rec.author || 'Autor desconhecido',
+          imageSrc: rec.imageUrl || undefined,
+          link: rec.externalLink || undefined
+        }))
+      }
     }
 
     chatStoreActions.addMessage({
@@ -47,11 +55,13 @@ export function useChatHook() {
 
     try {
       const { conversationId } = useChatStore.getState();
-      const responseMessage = conversationId
+      // if (!conversationId) {}
+      const lastMessage = conversationId
         ? await sendConversationMessage(conversationId, msg)
         : await createConversation(msg);
 
-        chatStoreActions.editLastMessage(responseMessage);
+        chatStoreActions.editLastMessage(lastMessage);
+
     } catch (error) {
       console.error(error)
       chatStoreActions.editLastMessage({

@@ -1,25 +1,22 @@
 export interface CreateConversationResponse {
-  conversationId: string;
-  messages: [
+  conversation: [
     {
-      role: "assistant";
-      content: string;
+      id: string;
+      title: string;
+      threadId: string;
     }
   ];
 }
 
 export interface SendMessageResponse {
-  userMessage: {
-    content: [
-      {
-        type: "text";
-        text: {
-          value: string;
-          annotations: [];
-        };
-      }
-    ];
-  };
+  message: string;
+  options?: string[];
+  recommendations?: {
+    name: string,
+    imageUrl: string | null,
+    externalLink: string | null,
+    author: string | null
+  }[]
 }
 
 export interface ConversationResponseItem {
@@ -28,12 +25,12 @@ export interface ConversationResponseItem {
 }
 
 export interface ListMessagesResponseMessage {
-  role: string;
+  role: "user" | "assistant";
   message: string;
-  suggestions: unknown[];
+  suggestions: string[];
   canGenerateRecommendations: boolean;
 }
 
 export interface ListMessagesResponse {
-  messages: ListMessagesResponseMessage[]
+  messages: ListMessagesResponseMessage[];
 }
