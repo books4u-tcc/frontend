@@ -2,11 +2,12 @@ import { Button, ButtonProps, Flex, Icon } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { FiCheckCircle } from "react-icons/fi";
 
-export interface SidebarButtonProps extends Pick<ButtonProps, 'as' | 'children'> {
+export interface SidebarButtonProps
+  extends Pick<ButtonProps, "as" | "children"> {
   highlighted?: boolean;
-  checked?: boolean
+  checked?: boolean;
   icon?: ReactNode;
-  to?: string
+  to?: string;
 }
 
 export function SidebarButton({ highlighted, ...props }: SidebarButtonProps) {
@@ -15,6 +16,8 @@ export function SidebarButton({ highlighted, ...props }: SidebarButtonProps) {
       w="100%"
       height="auto"
       fontWeight="semibold"
+      fontSize={["xx-small", "xs", "sm"]}
+      textOverflow="ellipsis"
       borderRadius="2xl"
       display="flex"
       gap={1}
@@ -32,7 +35,11 @@ export function SidebarButton({ highlighted, ...props }: SidebarButtonProps) {
       color={highlighted ? "teal.600" : "inherit"}
       px={3}
       py={3}
-      rightIcon={props.checked ? <Icon color="teal" h={5} w={5} as={FiCheckCircle} /> : undefined}
+      rightIcon={
+        props.checked ? (
+          <Icon color="teal" h={5} w={5} as={FiCheckCircle} />
+        ) : undefined
+      }
       {...props}
     >
       {props.icon}
