@@ -26,7 +26,7 @@ export function SidebarSignedIn() {
 
   return (
     <Fragment>
-      <Flex flex={1} flexDir="column" w="100%" gap={2}>
+      <Flex flex={1} flexDir="column" w="100%" gap={2} maxH={["300px", "300px", "calc(100dvh - 120px)"]} overflow="auto">
         <RouterLink to="/">
           <SidebarButton highlighted icon={<Icon w={6} h={6} as={FiPlus} />}>
             Nova conversa
@@ -44,10 +44,35 @@ export function SidebarSignedIn() {
         ))}
       </Flex>
 
-      <Flex flexDir="column" w="100%" alignItems={["center","center","start"]} color="#616161">
-        <Link as={RouterLink} to="/about" >Sobre</Link>
-        <Link as={RouterLink} to="/account" >Minha conta</Link>
-        <Link onClick={logout}>Log Out</Link>
+      <Flex
+        flexDir="column"
+        w="100%"
+        alignItems={["center", "center", "start"]}
+        color="#616161"
+      >
+        <Link
+          as={RouterLink}
+          to="/about"
+          w="100%"
+          textAlign={["center", "center", "start"]}
+        >
+          Sobre
+        </Link>
+        <Link
+          as={RouterLink}
+          to="/account"
+          w="100%"
+          textAlign={["center", "center", "start"]}
+        >
+          Minha conta
+        </Link>
+        <Link
+          onClick={logout}
+          w="100%"
+          textAlign={["center", "center", "start"]}
+        >
+          Log Out
+        </Link>
       </Flex>
     </Fragment>
   );

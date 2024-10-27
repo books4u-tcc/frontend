@@ -31,7 +31,8 @@ export function ChatBox(props: ChatboxProps) {
         fontWeight="semibold"
         boxShadow="default"
         borderRadius="2xl"
-        bgGradient="linear(to-tr, #EFEFEF, #FEFEFE)"
+        color={isLeft ? '#303030' : '#1E4A59'}
+        bgGradient={isLeft ? "linear(to-tr, #EFEFEF, #FEFEFE)" : "linear(to-br, #EAFCFF, #AFE8F2)"}
         px="6"
         py="2"
         width="auto"

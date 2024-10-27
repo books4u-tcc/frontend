@@ -32,7 +32,7 @@ export function useLoadMessages() {
               conversationId
             );
             const lastMessage = messages[messages.length - 1]
-            if (lastMessage.suggestions) {
+            if (lastMessage?.suggestions) {
               chatStoreActions.setSuggestions(lastMessage.suggestions)
             }
           }

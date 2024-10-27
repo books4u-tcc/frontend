@@ -23,7 +23,7 @@ export function SidebarButton({ highlighted, active, ...props }: SidebarButtonPr
       w="100%"
       height="auto"
       fontWeight="semibold"
-      fontSize={["xx-small", "xs", "sm"]}
+      fontSize="sm"
       textOverflow="ellipsis"
       borderRadius="2xl"
       display="flex"
@@ -33,7 +33,7 @@ export function SidebarButton({ highlighted, active, ...props }: SidebarButtonPr
       colorScheme={highlighted ? "teal" : "gray"}
       variant={highlighted ? "ghost" : undefined}
       color={highlighted ? "teal.600" : "inherit"}
-      px={3}
+      px={[1, 1, 3]}
       py={3}
       rightIcon={
         props.checked ? (

@@ -6,10 +6,28 @@ import { chatStoreActions, MessageItem, useChatStore } from "./chat-store";
 export function useChatHook() {
   const navigate = useNavigate();
 
+  function canSendMessage() {
+    const messages = useChatStore.getState().messages
+    const lastSentMessage = messages[messages.length - 1]
+
+    return !lastSentMessage || lastSentMessage.state !== 'loading'
+  }
+
   async function sendMessage(msg: string) {
+    if (!canSendMessage()) return
+    const startingConversationId = useChatStore.getState().conversationId
+    
+    function isStillSameConversation () {
+      console.log(useChatStore.getState().conversationId, startingConversationId)
+      return useChatStore.getState().conversationId === startingConversationId
+    }
+
     async function createConversation(msg: string): Promise<MessageItem> {
       const { data: response } = await apiClient.createConversation();
       const conversation = response.conversation[0]
+
+      if (!isStillSameConversation())
+        throw new Error('Conversation changed while waiting response')
 
       chatStoreActions.setConversationId(conversation.id)
       sidebarStoreActions.addConversation({
@@ -27,6 +45,9 @@ export function useChatHook() {
       msg: string
     ): Promise<MessageItem> {
       const { data: response } = await apiClient.sendMessage(conversationId, msg);
+
+      if (!isStillSameConversation())
+        throw new Error('Conversation changed while waiting response')
 
       chatStoreActions.setSuggestions(response.options || []);
   
@@ -64,12 +85,14 @@ export function useChatHook() {
 
     } catch (error) {
       console.error(error)
-      chatStoreActions.editLastMessage({
-        state: "error",
-        children: "Ocorreu um erro! " + error,
-      });
+      if (isStillSameConversation()) { 
+        chatStoreActions.editLastMessage({
+          state: "error",
+          children: "Ocorreu um erro! " + error,
+        });
+      }
     }
   }
 
-  return { sendMessage }
+  return { sendMessage, canSendMessage }
 }

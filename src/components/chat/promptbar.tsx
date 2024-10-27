@@ -14,17 +14,19 @@ import { useChatHook } from "./chat-hook";
 
 export default function Promptbar() {
   const { promptRef } = useChatContext();
-  const { sendMessage } = useChatHook()
+  const { sendMessage, canSendMessage } = useChatHook()
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const message = event.currentTarget["message-input"].value as string;
 
     if (!message?.trim()) return
 
-    sendMessage(message);
-    if (promptRef?.current) {
-      promptRef.current.value = ''
+    if (canSendMessage()) {
+      if (promptRef?.current) {
+        promptRef.current.value = ''
+      }
+      await sendMessage(message)
     }
   }
 

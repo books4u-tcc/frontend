@@ -10,6 +10,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --mobile-navbar-height: 64px;
 }
 
 body {
@@ -21,4 +23,8 @@ body {
   border-radius: 20px;
   border: 6px solid transparent;
   background-clip: content-box;
+}
+
+#root {
+  height: var(--chakra-vh);
 }

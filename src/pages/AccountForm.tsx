@@ -8,9 +8,10 @@ import { useLoginStore } from "../components/account/loginStore";
 
 const AccountForm: React.FC = () => {
   const { view, setView } = useLoginStore()
+  
   return (
     <PageScaffold>
-      <Flex h="100%" alignItems="center">
+      <ContentBox>
         <Flex
           w="100%"
           direction="column"
@@ -48,7 +49,7 @@ const AccountForm: React.FC = () => {
             </>
           )}
         </Flex>
-      </Flex>
+      </ContentBox>
     </PageScaffold>
   );
 };

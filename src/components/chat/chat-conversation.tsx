@@ -38,7 +38,7 @@ export function ChatConversation() {
       ))}
 
       {suggestions.length > 0 && (
-        <Flex gap={5} justifyContent="center">
+        <Flex gap={[3, 3, 5]} justifyContent="center" flexDir={["column", "column", "row"]} flexWrap="wrap">
           {suggestions.map((s) => (
             <SuggestionCard onClick={() => sendMessage(s)}>
               {s}

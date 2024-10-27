@@ -6,9 +6,9 @@ import { Box } from "@chakra-ui/react";
 export function About() {
   return (
     <PageScaffold>
-      <Box h="100%">
+      <ContentBox>
         <AboutInformations />
-      </Box>
+      </ContentBox>
     </PageScaffold>
   );
 }

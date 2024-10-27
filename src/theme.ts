@@ -17,6 +17,7 @@ const shadows = {
 
 const colors = {
   brand: "#006D86",
+  brandLight: "#3F8EA8",
   brandGradient: "linear-gradient(-45deg, #fff 0%, #EAF5F7 100%)",
   brandGradientHover: "linear-gradient(-45deg, #d2eff4 0%, #eafafc 100%)"
 }
