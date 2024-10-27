@@ -24,7 +24,12 @@ export function Onboarding() {
         <p>Como posso te ajudar hoje?</p>
       </Text>
 
-      <Flex gap={5}>
+      <Flex
+        w="100%"
+        justifyContent="center"
+        flexDir={["column", "column", "row"]}
+        gap={5}
+      >
         <SuggestionCard
           onClick={() => sendMessage("Me recomende livros clássicos")}
         >
