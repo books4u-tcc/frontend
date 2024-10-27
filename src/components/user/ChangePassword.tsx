@@ -11,9 +11,8 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  AlertDialogFooter,
 } from "@chakra-ui/react";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useUserStore } from "./userStore";
 

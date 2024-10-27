@@ -1,6 +1,6 @@
-import { Flex, Text, Button, Box } from "@chakra-ui/react";
+import { Flex, Text, Button } from "@chakra-ui/react";
 import { Register } from "../components/account/register";
-import React, { useState } from "react";
+import React from "react";
 import { Login } from "../components/account/login";
 import { PageScaffold } from "./PageScaffold";
 import { ContentBox } from "../components/content-box";
@@ -8,7 +8,7 @@ import { useLoginStore } from "../components/account/loginStore";
 
 const AccountForm: React.FC = () => {
   const { view, setView } = useLoginStore()
-  
+
   return (
     <PageScaffold>
       <ContentBox>

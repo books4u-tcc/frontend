@@ -1,15 +1,11 @@
 import {
-  Button,
   Flex,
   IconButton,
   Input,
-  InputGroup,
-  InputRightAddon,
 } from "@chakra-ui/react";
 import { FiSend } from "react-icons/fi";
 import { useChatContext } from "./chat-context";
 import { FormEvent } from "react";
-import { chatStoreActions } from "./chat-store";
 import { useChatHook } from "./chat-hook";
 
 export default function Promptbar() {

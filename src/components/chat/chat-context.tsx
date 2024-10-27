@@ -1,4 +1,4 @@
-import { createContext, MutableRefObject, ReactNode, RefObject, useContext, useRef } from "react"
+import { createContext, MutableRefObject, ReactNode, useContext, useRef } from "react"
 
 export interface IChatContext {
   promptRef?: MutableRefObject<HTMLInputElement | null>

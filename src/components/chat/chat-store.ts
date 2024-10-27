@@ -1,9 +1,6 @@
 import { create } from "zustand";
 import { ChatboxProps } from "./chatbox";
 import { RecommendationCardProps } from "./recommendation-card";
-import { apiClient } from "../client/api";
-import { sidebarStoreActions } from "../sidebar/sidebar-store";
-import { redirect } from "react-router-dom";
 
 export interface MessageItem extends ChatboxProps {}
 
@@ -16,7 +13,7 @@ export interface ChatConversationStore {
   suggestions: string[];
 }
 
-export const useChatStore = create<ChatConversationStore>((set) => ({
+export const useChatStore = create<ChatConversationStore>(() => ({
   isLoading: false,
   conversationId: null,
   messages: [],

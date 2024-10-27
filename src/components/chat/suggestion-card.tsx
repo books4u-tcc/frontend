@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { ChatCard } from "./chat-card";
 

@@ -6,7 +6,7 @@ interface AuthStore {
   token: string | null
 }
 
-export const useAuthStore = create<AuthStore>(set => ({
+export const useAuthStore = create<AuthStore>(() => ({
   authenticated: false,
   token: null
 }))

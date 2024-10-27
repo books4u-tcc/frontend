@@ -1,5 +1,4 @@
-import { Box, Container, Flex, Spacer } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { Container, Flex } from "@chakra-ui/react";
 import { ChatConversation } from "./chat-conversation";
 import Promptbar from "./promptbar";
 import { ContentBox } from "../content-box";

@@ -1,7 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import bookSearchIcon from "../../assets/icons/book-search.svg";
 import { SuggestionCard } from "./suggestion-card";
-import { chatStoreActions } from "./chat-store";
 import { useChatContext } from "./chat-context";
 import { useChatHook } from "./chat-hook";
 

@@ -1,7 +1,6 @@
 import {
   Flex,
   FormControl,
-  FormLabel,
   Input,
   Text,
   Button,
@@ -9,8 +8,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { authStoreActions } from "../../stores/auth";
-import { useNavigate } from "react-router-dom";
 import { apiClient } from "../client/api";
 import { useLoginStore } from "./loginStore";
 import { AxiosError } from "axios";

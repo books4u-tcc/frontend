@@ -1,22 +1,19 @@
 import {
   Box,
-  Button,
   Center,
   Collapse,
   Flex,
-  Grid,
   Icon,
   IconButton,
   Show,
   useOutsideClick,
 } from "@chakra-ui/react";
-import menuIcon from "../../assets/icons/menu.svg";
 import logoBig from "../../assets/logo-big.svg";
 import { SidebarSignedIn } from "./sidebar-signedin";
 import { SidebarSignedOut } from "./sidebar-signedout";
 import { useAuthStore } from "../../stores/auth";
 import { Link as RouterLink } from "react-router-dom";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 
 export default function Sidebar() {

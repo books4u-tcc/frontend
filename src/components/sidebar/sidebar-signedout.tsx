@@ -1,4 +1,4 @@
-import { Flex, Link, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Link } from "@chakra-ui/react";
 import { Fragment } from "react/jsx-runtime";
 import { SidebarButton } from "./sidebar-button";
 import { SidebarTip } from "./sidebar-tip";
