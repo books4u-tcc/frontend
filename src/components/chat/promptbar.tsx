@@ -1,28 +1,28 @@
 import {
-  Button,
   Flex,
   IconButton,
   Input,
-  InputGroup,
-  InputRightAddon,
 } from "@chakra-ui/react";
 import { FiSend } from "react-icons/fi";
 import { useChatContext } from "./chat-context";
 import { FormEvent } from "react";
-import { chatStoreActions } from "./chat-store";
+import { useChatHook } from "./chat-hook";
 
 export default function Promptbar() {
   const { promptRef } = useChatContext();
+  const { sendMessage, canSendMessage } = useChatHook()
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const message = event.currentTarget["message-input"].value as string;
 
     if (!message?.trim()) return
 
-    chatStoreActions.sendMessage(message);
-    if (promptRef?.current) {
-      promptRef.current.value = ''
+    if (canSendMessage()) {
+      if (promptRef?.current) {
+        promptRef.current.value = ''
+      }
+      await sendMessage(message)
     }
   }
 

@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { ChatCard } from "./chat-card";
 
@@ -16,7 +16,7 @@ export function SuggestionCard({
   return (
     <ChatCard onClick={onClick}>
       <Box zIndex={10}>{icon}</Box>
-      <Text zIndex={10} color="brand" fontWeight="bold" fontSize={["small", "small", "medium", "large"]}>
+      <Text zIndex={10} color="brandLight" fontWeight="semibold" fontSize={["medium", "medium", "medium", "large"]}>
         {children}
       </Text>
     </ChatCard>

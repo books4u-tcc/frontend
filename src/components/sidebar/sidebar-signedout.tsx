@@ -1,4 +1,4 @@
-import { Flex, Link, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Link } from "@chakra-ui/react";
 import { Fragment } from "react/jsx-runtime";
 import { SidebarButton } from "./sidebar-button";
 import { SidebarTip } from "./sidebar-tip";
@@ -18,8 +18,8 @@ export function SidebarSignedOut() {
         <SidebarTip />
       </Flex>
 
-      <Flex flexDir="column" w="100%" alignItems={["center","center","start"]} color="#616161">
-        <Link as={RouterLink} to="/about">
+      <Flex flexDir="column" w="100%" color="#616161">
+        <Link as={RouterLink} to="/about" w="100%"  textAlign={["center","center","start"]}>
           Sobre
         </Link>
       </Flex>

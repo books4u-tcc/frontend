@@ -1,0 +1,27 @@
+.sidebar-button {
+  background-color: var(--chakra-colors-gray-100);
+  border: 2px solid transparent;
+
+  &:hover {
+    background-color: var(--chakra-colors-gray-300);
+  }
+
+  &:active {
+    background-color: var(--chakra-colors-gray-500);
+  }
+
+  &.highlighted {
+    background-color: var(--chakra-colors-teal-100);
+    &:hover {
+      background-color: var(--chakra-colors-teal-200);
+    }
+  
+    &:active {
+      background-color: var(--chakra-colors-teal-400);
+    }
+  }
+
+  &.active {
+    border: 2px solid var(--chakra-colors-teal-400);
+  }
+}

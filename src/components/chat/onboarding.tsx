@@ -1,15 +1,12 @@
 import { Flex, Text } from "@chakra-ui/react";
 import bookSearchIcon from "../../assets/icons/book-search.svg";
 import { SuggestionCard } from "./suggestion-card";
-import { chatStoreActions } from "./chat-store";
 import { useChatContext } from "./chat-context";
+import { useChatHook } from "./chat-hook";
 
 export function Onboarding() {
-  const { focusPromptInput } = useChatContext();
-
-  function startSuggestion(message: string) {
-    chatStoreActions.sendMessage(message);
-  }
+  const { focusPromptInput } = useChatContext()
+  const { sendMessage } = useChatHook()
 
   return (
     <Flex
@@ -33,17 +30,17 @@ export function Onboarding() {
         gap={5}
       >
         <SuggestionCard
-          onClick={() => startSuggestion("Me recomende livros clássicos")}
+          onClick={() => sendMessage("Me recomende livros clássicos")}
         >
           Livros clássicos
         </SuggestionCard>
         <SuggestionCard
-          onClick={() => startSuggestion("Me recomende histórias de romance")}
+          onClick={() => sendMessage("Me recomende histórias de romance")}
         >
           Histórias de romance
         </SuggestionCard>
         <SuggestionCard
-          onClick={() => startSuggestion("Me recomende artigos interessantes")}
+          onClick={() => sendMessage("Me recomende artigos interessantes")}
         >
           Artigos interessantes
         </SuggestionCard>

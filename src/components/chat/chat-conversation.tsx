@@ -1,19 +1,25 @@
 import { ChatBox } from "./chatbox";
-import { chatStoreActions, useChatStore } from "./chat-store";
+import { useChatStore } from "./chat-store";
 import { Fragment } from "react";
 import { Onboarding } from "./onboarding";
-import { Flex } from "@chakra-ui/react";
+import { Center, Flex, Spinner } from "@chakra-ui/react";
 import { SuggestionCard } from "./suggestion-card";
 import { useChatContext } from "./chat-context";
+import { useChatHook } from "./chat-hook";
+import { useLoadMessages } from "./load-message-hook";
 
 export function ChatConversation() {
-  const messages = useChatStore((s) => s.messages);
-  const suggestions = useChatStore((s) => s.suggestions);
+  const { messages, isLoading, suggestions } = useChatStore();
+  const { sendMessage } = useChatHook()
 
   const { focusPromptInput } = useChatContext();
 
-  function startSuggestion(message: string) {
-    chatStoreActions.sendMessage(message);
+  useLoadMessages();
+
+  if (isLoading) {
+    return <Center h="100%">
+      <Spinner />
+    </Center>
   }
 
   if (!messages.length) {
@@ -27,9 +33,9 @@ export function ChatConversation() {
       ))}
 
       {suggestions.length > 0 && (
-        <Flex gap={5} justifyContent="center">
+        <Flex gap={[3, 3, 5]} justifyContent="center" flexDir={["column", "column", "row"]} flexWrap="wrap">
           {suggestions.map((s) => (
-            <SuggestionCard onClick={() => startSuggestion(s)}>
+            <SuggestionCard onClick={() => sendMessage(s)}>
               {s}
             </SuggestionCard>
           ))}

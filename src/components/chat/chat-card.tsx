@@ -12,8 +12,8 @@ export function ChatCard({ children, ...props }: ChatCardProps) {
       bg="brandGradientHover"
       shadow="default"
       borderRadius="2xl"
-      px={4}
-      py={6}
+      px={[2, 2, 4]}
+      py={[3, 3, 6]}
       overflow="hidden"
       position="relative"
       alignItems="center"

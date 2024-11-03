@@ -1,17 +1,26 @@
-import { useDisclosure, Button, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from "@chakra-ui/react"
-import React, { useRef } from "react"
+import {
+  useDisclosure,
+  Button,
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogFooter,
+} from "@chakra-ui/react";
+import React, { useRef } from "react";
+import { useUserStore } from "./userStore";
 
 export default function DeleteAccount() {
+  const isLoading = useUserStore((s) => s.isLoading);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef<HTMLButtonElement>(null);
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const cancelRef = useRef<HTMLButtonElement>(null);
-
-
-    return (
-        <>
-        <Button bg="#D66565" color="white" onClick={onOpen}>
+  return (
+    <>
+      <Button colorScheme="red" onClick={onOpen} isDisabled={isLoading}>
         Excluir conta
-        </Button>
+      </Button>
 
       <AlertDialog
         isOpen={isOpen}
@@ -20,7 +29,7 @@ export default function DeleteAccount() {
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
               Deseja remover sua conta?
             </AlertDialogHeader>
 
@@ -40,6 +49,5 @@ export default function DeleteAccount() {
         </AlertDialogOverlay>
       </AlertDialog>
     </>
-    )
-
+  );
 }

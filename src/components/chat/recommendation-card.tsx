@@ -1,6 +1,6 @@
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import { ChatCard } from "./chat-card";
-import { chatStoreActions } from "./chat-store";
+import { useChatHook } from "./chat-hook";
 
 export interface RecommendationCardProps {
   title: string;
@@ -10,8 +10,10 @@ export interface RecommendationCardProps {
 }
 
 export function RecommendationCard(props: RecommendationCardProps) {
+  const { sendMessage } = useChatHook()
+
   function showDetails() {
-    chatStoreActions.sendMessage(
+    sendMessage(
       `Me conte mais sobre o livro ${props.title} de ${props.author}`
     );
   }
