@@ -15,7 +15,7 @@ export function useChatHook() {
 
   async function sendMessage(msg: string) {
     if (!canSendMessage()) return
-    const startingConversationId = useChatStore.getState().conversationId
+    let startingConversationId = useChatStore.getState().conversationId
     
     function isStillSameConversation () {
       console.log(useChatStore.getState().conversationId, startingConversationId)
@@ -30,6 +30,7 @@ export function useChatHook() {
         throw new Error('Conversation changed while waiting response')
 
       chatStoreActions.setConversationId(conversation.id)
+      startingConversationId = conversation.id
       sidebarStoreActions.addConversation({
         id: conversation.id,
         title: conversation.title

@@ -7,14 +7,44 @@ import {
   AlertDialogHeader,
   AlertDialogBody,
   AlertDialogFooter,
+  useToast,
 } from "@chakra-ui/react";
-import React, { useRef } from "react";
+import { useRef, useState } from "react";
 import { useUserStore } from "./userStore";
+import { apiClient } from "../client/api";
+import { authStoreActions } from "../../stores/auth";
+import { chatStoreActions } from "../chat/chat-store";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteAccount() {
   const isLoading = useUserStore((s) => s.isLoading);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef<HTMLButtonElement>(null);
+  const toast = useToast()
+  const navigate = useNavigate()
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false)
+
+  async function deleteAccount() {
+    setIsDeleteLoading(true)
+    try {
+      await apiClient.deleteAccount()
+      toast({
+        title: 'Conta removida com sucesso!',
+        status: 'success'
+      })
+      authStoreActions.logout()
+      chatStoreActions.clear()
+      navigate('/auth/login')
+    } catch(error) {
+      console.error(error)
+      toast({
+        title: 'Ocorreu um erro ao remover sua conta!',
+        status: 'error'
+      })
+    } finally {
+      setIsDeleteLoading(false)
+    }
+  }
 
   return (
     <>
@@ -41,7 +71,7 @@ export default function DeleteAccount() {
               <Button ref={cancelRef} onClick={onClose}>
                 Cancelar
               </Button>
-              <Button bg="#D66565" color="white" onClick={onClose} ml={3}>
+              <Button bg="#D66565" color="white" onClick={deleteAccount} ml={3} isLoading={isDeleteLoading}>
                 Excluir conta
               </Button>
             </AlertDialogFooter>
