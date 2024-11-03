@@ -52,7 +52,7 @@ export function ChatBox(props: ChatboxProps) {
       </Flex>
 
       {recommendations && recommendations?.length > 0 && (
-        <Flex gap={5} overflowX="auto" maxW="100%" pb={4} pr={2}>
+        <Flex gap={5} overflowX="auto" maxW="100%" pb={4} px={2}>
           {recommendations.map((r) => (
             <RecommendationCard {...r} />
           ))}

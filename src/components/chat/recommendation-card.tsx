@@ -27,7 +27,7 @@ export function RecommendationCard(props: RecommendationCardProps) {
         h="100%"
       >
         <Flex width="100%" flexDir="column" alignItems="center" gap={2}>
-          <Image src={props.imageSrc} borderRadius="md" h={240} zIndex={1000} />
+          <Image src={props.imageSrc} borderRadius="md" h={240} zIndex={10} />
 
           <Text
             zIndex={10}
@@ -43,7 +43,7 @@ export function RecommendationCard(props: RecommendationCardProps) {
           </Text>
         </Flex>
 
-        <Flex width="100%" flexDir="column">
+        <Flex width="100%" flexDir="column" gap={2}>
           <Button
             w="100%"
             size="sm"
@@ -52,7 +52,7 @@ export function RecommendationCard(props: RecommendationCardProps) {
               bg: "blackAlpha.300",
             }}
             variant="ghost"
-            zIndex={1000}
+            zIndex={10}
             onClick={showDetails}
           >
             Ver detalhes
@@ -65,7 +65,7 @@ export function RecommendationCard(props: RecommendationCardProps) {
               as="a"
               href={props.link}
               target="_blank"
-              zIndex={1000}
+              zIndex={10}
             >
               Comprar
             </Button>
