@@ -12,11 +12,11 @@ export function ContentBox({ children }: ContextBoxProps) {
   return <Flex w="100%" h="100%" py={[2, 2, 3]} pt={[2, 2, 3]} pr={[2, 2, 3]} pl={[2, 2, 0]} maxH="100dvh">
     <Flex
       pt={3}
-      pr={3}
+      px={2}
       maxH="100dvh"
       h="100%"
       w="100%"
-      paddingTop="5rem"
+      
       borderRadius="3xl"
       bg="linear-gradient( #F6F6F600 0%, #F6F6F6 15%)"
       border="1px solid #d1d1d1"
