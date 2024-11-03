@@ -6,8 +6,12 @@ import {
   Button,
   Text,
   Flex,
+  useToast,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { apiClient } from "../client/api";
+import { userStoreActions, useUserStore } from "./userStore";
 
 interface FormData {
   Name: string;
@@ -18,11 +22,52 @@ export default function EditAccount() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormData>();
-  const onSubmit = (data: FormData) => {
-    console.log(Object.values(data));
+  const account = useUserStore(s => s.account)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const toast = useToast()
+
+  useEffect(() => {
+    if (!account) return
+
+    setValue('Name', account.displayName)
+    setValue('Email', account.email)
+  }, [account])
+
+  const onSubmit = async (data: FormData) => {
+    if (isLoading) return
+    
+    setIsLoading(true)
+    
+    try {
+      await apiClient.updateProfile({
+        displayName: data.Name,
+        email: data.Email
+      })
+
+      toast({
+        title: 'Dados atualizados com sucesso!',
+        status: 'success'
+      })
+      
+      userStoreActions.updateUser({
+        displayName: data.Name,
+        email: data.Email
+      })
+    } catch (error) {
+      console.error(error)
+      toast({
+        title: 'Ocorreu um erro ao atualizar os dados da conta!',
+        status: 'error'
+      })
+    } finally {
+      setIsLoading(false)
+    }
   };
+
 
   return (
     <Flex
@@ -38,7 +83,7 @@ export default function EditAccount() {
         <Input
           type="text"
           width="100%"
-          {...register("Name", { value: "Bookinho"})}
+          {...register("Name", { value: account?.displayName })}
           placeholder="Nome"
           bg="blackAlpha.100"
         />
@@ -53,7 +98,7 @@ export default function EditAccount() {
         <FormLabel>Email</FormLabel>
         <Input
           width="100%"
-          {...register("Email", { value: "bookinho@email.com"})}
+          {...register("Email", { value: account?.email })}
           placeholder="Email"
           bg="blackAlpha.100"
         />
@@ -65,7 +110,7 @@ export default function EditAccount() {
       </FormControl>
 
       <Flex justifyContent="end">
-      <Button colorScheme="teal" type="submit" ml={3} color="white" mb={3}>
+      <Button isLoading={isLoading} colorScheme="teal" type="submit" ml={3} color="white" mb={3}>
         Salvar mudanças
       </Button>
       </Flex>

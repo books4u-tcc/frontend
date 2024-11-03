@@ -8,10 +8,10 @@ export function SidebarSignedOut() {
   return (
     <Fragment>
       <Flex flex={1} flexDir="column" w="100%" gap={2}>
-        <SidebarButton as={RouterLink} to="/account/auth" highlighted>
+        <SidebarButton as={RouterLink} to="/auth/login" highlighted>
           Entrar
         </SidebarButton>
-        <SidebarButton as={RouterLink} to="/account/auth">
+        <SidebarButton as={RouterLink} to="/auth/register">
           Criar conta
         </SidebarButton>
 

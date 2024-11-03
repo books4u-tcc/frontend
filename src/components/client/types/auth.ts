@@ -20,3 +20,9 @@ export interface Account {
   passwordHash: string;
   createdAt: Date;
 }
+
+export interface UserUpdatePayload {
+  displayName?: string,
+  email?: string,
+  password?: string
+}

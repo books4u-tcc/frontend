@@ -3,6 +3,8 @@ import { MyAccount } from "../pages/MyAccount";
 import { About } from "../pages/About";
 import AccountForm from "../pages/AccountForm";
 import { ConversationPage } from "../pages/Conversation";
+import { LoginPage } from "../pages/LoginPage";
+import { RegisterPage } from "../pages/RegisterPage";
 
 const conversationPage = <ConversationPage />
 
@@ -23,8 +25,12 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/account/auth",
-    element: <AccountForm />,
+    path: "/auth/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/auth/register",
+    element: <RegisterPage />,
   },
   {
     path: "/conversations/:conversationId",

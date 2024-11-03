@@ -24,5 +24,14 @@ export const userStoreActions = {
     useUserStore.setState({ account: data })
     this.setLoading(false)
     return data
+  },
+
+  updateUser(account: Partial<Account>) {
+    useUserStore.setState(state => ({
+      account: state.account ?  {
+        ...state.account,
+        ...account
+      } : null
+    }))
   }
 }
