@@ -21,7 +21,7 @@ export function RecommendationCard(props: RecommendationCardProps) {
     <ChatCard _hover={{}} as="div" minW={180} w="100%">
       <Flex
         flexDir="column"
-        
+        overflow="hidden"
         alignItems="center"
         justifyContent="space-between"
         h="100%"
@@ -35,15 +35,17 @@ export function RecommendationCard(props: RecommendationCardProps) {
             fontWeight="bold"
             fontSize="large"
             align="center"
+            noOfLines={2}
+            width="100%"
           >
             {props.title}
           </Text>
-          <Text zIndex={10} color="brand" fontSize="large" align="center">
+          <Text zIndex={10} color="brand" fontSize="large" align="center" noOfLines={2}>
             {props.author}
           </Text>
         </Flex>
 
-        <Flex width="100%" flexDir="column" gap={2}>
+        <Flex width="100%" flexDir="column" gap={2} mt={4}>
           <Button
             w="100%"
             size="sm"

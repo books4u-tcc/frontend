@@ -16,7 +16,9 @@ export interface SendMessageResponse {
     imageUrl: string | null,
     externalLink: string | null,
     author: string | null
-  }[]
+  }[],
+  canGenerateRecommendations: boolean
+  title?: string
 }
 
 export interface ConversationResponseItem {
@@ -24,10 +26,17 @@ export interface ConversationResponseItem {
   title: string;
 }
 
+export interface ListMessagesResponseMessageRecommendation {
+  title: string,
+  imageUrl: string | null,
+  externalLink: string | null,
+  author: string | null
+}
+
 export interface ListMessagesResponseMessage {
   role: "user" | "assistant";
   message: string;
-  suggestions: string[];
+  suggestions: (string | ListMessagesResponseMessageRecommendation)[];
   canGenerateRecommendations: boolean;
 }
 

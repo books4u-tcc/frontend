@@ -51,6 +51,10 @@ export function useChatHook() {
         throw new Error('Conversation changed while waiting response')
 
       chatStoreActions.setSuggestions(response.options || []);
+
+      if (response.title) {
+        sidebarStoreActions.updateConversation(conversationId, response.title)
+      }
   
       return {
         position: 'left',
