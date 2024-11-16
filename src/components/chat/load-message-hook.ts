@@ -23,7 +23,7 @@ export function useLoadMessages() {
 
     function handleRecommendations(msg: ListMessagesResponseMessage) {
       if (msg.suggestions?.[0] && typeof msg.suggestions?.[0] === "object") {
-        return (msg.suggestions as ListMessagesResponseMessageRecommendation[]).map((s) => ({
+        return (msg.suggestions).filter(s => typeof s === 'object').map((s) => ({
           title: s.title,
           author: s.author || "Autor desconhecido",
           imageSrc: s.imageUrl || undefined,
@@ -50,7 +50,7 @@ export function useLoadMessages() {
             );
             const lastMessage = messages[messages.length - 1]
             if (lastMessage?.suggestions?.[0] && typeof lastMessage.suggestions[0] === 'string') {
-              chatStoreActions.setSuggestions(lastMessage.suggestions as string[])
+              chatStoreActions.setSuggestions(lastMessage.suggestions.filter(s => typeof s === 'string'))
             }
           }
         })
