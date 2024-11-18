@@ -25,7 +25,7 @@ export function ChatBox(props: ChatboxProps) {
       gap={6}
       alignSelf={isLeft ? "start" : "end"}
       textAlign={isLeft ? "start" : "end"}
-      maxW="85%"
+      width="100%"
     >
       <Flex
         fontWeight="semibold"
@@ -36,6 +36,8 @@ export function ChatBox(props: ChatboxProps) {
         px="6"
         py="2"
         width="auto"
+        maxW="85%"
+        alignSelf={isLeft ? "" : "end"}
       >
         {state === "normal" ? props.children : null}
 
@@ -50,7 +52,7 @@ export function ChatBox(props: ChatboxProps) {
       </Flex>
 
       {recommendations && recommendations?.length > 0 && (
-        <Flex gap={5}>
+        <Flex gap={5} overflowX="auto" maxW="100%" pb={4} px={2}>
           {recommendations.map((r) => (
             <RecommendationCard {...r} />
           ))}

@@ -25,5 +25,16 @@ export const sidebarStoreActions = {
       conversation,
       ...getState().conversations
     ] })
+  },
+
+  updateConversation(id: string, title: string) {
+    setState(state => ({
+      conversations: state.conversations.map(c => {
+        if (c.id === id) {
+          return { id, title }
+        }
+        return c
+      })
+    }))
   }
 }

@@ -11,13 +11,14 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUserStore } from "./userStore";
+import { apiClient } from "../client/api";
 
 interface FormData {
-  currentPassword: string;
   newPassword: string;
   confirmNewPassword: string;
 }
@@ -33,8 +34,35 @@ export default function ChangePassword() {
     watch,
   } = useForm<FormData>();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const onSubmit = (data: FormData) => {
-    console.log(Object.values(data));
+  const [isChangeLoading, setIsChangeLoading] = useState(false)
+
+  const toast = useToast()
+
+
+  const onSubmit = async (data: FormData) => {
+    if (isChangeLoading) return
+    
+    setIsChangeLoading(true)
+    
+    try {
+      await apiClient.updateProfile({
+        password: data.newPassword
+      })
+
+      toast({
+        title: 'Senha atualizada com sucesso!',
+        status: 'success'
+      })
+      onClose()
+    } catch (error) {
+      console.error(error)
+      toast({
+        title: 'Ocorreu um erro ao atualizar a senha!',
+        status: 'error'
+      })
+    } finally {
+      setIsChangeLoading(false)
+    }
   };
 
   return (
@@ -56,25 +84,6 @@ export default function ChangePassword() {
 
             <AlertDialogBody>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl isInvalid={Boolean(errors.currentPassword)} mb={4}>
-                  <FormLabel>Senha atual</FormLabel>
-                  <Input
-                    type="password"
-                    {...register("currentPassword", {
-                      required: "Senha atual é obrigatória",
-                      minLength: {
-                        value: 6,
-                        message: "Senha deve ter no mínimo 6 caracteres",
-                      },
-                    })}
-                  />
-                  <FormErrorMessage>
-                    {errors.currentPassword &&
-                      errors.currentPassword.message && (
-                        <Text>{errors.currentPassword.message}</Text>
-                      )}
-                  </FormErrorMessage>
-                </FormControl>
 
                 <FormControl isInvalid={Boolean(errors.newPassword)} mb={4}>
                   <FormLabel>Nova senha</FormLabel>
@@ -121,7 +130,7 @@ export default function ChangePassword() {
                   Cancelar
                 </Button>
 
-                <Button bg="#3F8EA8" type="submit" ml={3} color="white">
+                <Button bg="#3F8EA8" type="submit" ml={3} color="white" isLoading={isChangeLoading}>
                   Mudar senha
                 </Button>
               </form>

@@ -15,7 +15,7 @@ export function ChatContainer() {
             w="100%"
             gap={4}
             flexDirection="column"
-            px={10}
+            px={[2, 2, 4, 10]}
             py={8}
           >
             <ChatConversation />

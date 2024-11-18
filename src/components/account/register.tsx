@@ -9,8 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { apiClient } from "../client/api";
-import { useLoginStore } from "./loginStore";
 import { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
   name: string;
@@ -26,8 +26,8 @@ export function Register() {
     formState: { errors },
     watch,
   } = useForm<FormData>();
+  const navigate = useNavigate()
 
-  const { setView } = useLoginStore();
   const toast = useToast();
 
   const onSubmit = async (data: FormData) => {
@@ -41,7 +41,7 @@ export function Register() {
         status: "success",
         title: "Conta criada com sucesso!",
       });
-      setView("login");
+      navigate("/auth/login");
     } catch (error) {
       const msg = error instanceof AxiosError ? error.response?.data?.message : "Tente novamente mais tarde"
       toast({
@@ -65,10 +65,6 @@ export function Register() {
             type="text"
             {...register("name", {
               required: "Nome é obrigatório",
-              pattern: {
-                value: /^[a-zA-Z]+$/,
-                message: "Nome inválido",
-              },
               minLength: {
                 value: 1,
                 message: "Nome deve ter no mínimo um caracteres",

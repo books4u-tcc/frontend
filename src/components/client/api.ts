@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Account, LoginPayload, LoginResponse, RegisterUserPayload } from "./types/auth"
+import { Account, LoginPayload, LoginResponse, RegisterUserPayload, UserUpdatePayload } from "./types/auth"
 import { useAuthStore } from "../../stores/auth"
 import { ConversationResponseItem, CreateConversationResponse, ListMessagesResponse, SendMessageResponse } from "./types/conversation"
 
@@ -38,6 +38,14 @@ export const apiClient = {
 
   getProfile() {
     return client.get<Account>('/api/auth/profile')
+  },
+
+  updateProfile(update: UserUpdatePayload) {
+    return client.put('/api/auth/update', update)
+  },
+
+  deleteAccount() {
+    return client.delete('/api/auth/delete')
   },
 
   createConversation() {

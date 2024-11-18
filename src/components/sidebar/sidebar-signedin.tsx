@@ -13,7 +13,7 @@ export function SidebarSignedIn() {
   const { conversationId } = useParams();
 
   function logout() {
-    navigate("/account/auth");
+    navigate("/auth/login");
     authStoreActions.logout();
   }
 
